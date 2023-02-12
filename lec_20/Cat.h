@@ -1,13 +1,15 @@
 #ifndef CAT_H_INCLUDED
 #define CAT_H_INCLUDED
 
-class Cat
-{
+class Cat {
+
 private:
-    /* data */
+    bool happy = true; // available in modern c++
 public:
     void speak();
     void jump();
+    void makeHappy();
+    void makeSad();
 };
 
 #endif

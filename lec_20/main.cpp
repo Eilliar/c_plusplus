@@ -7,7 +7,7 @@ using namespace std;
 int main(){
 
     Cat myCat;
-
+    myCat.makeHappy();
     myCat.speak();
     myCat.jump();
 
