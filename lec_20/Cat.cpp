@@ -3,6 +3,15 @@
 
 using namespace std;
 
+Cat::Cat(){
+    cout << "Cat was created" << endl;
+    happy = true;
+}
+
+Cat::~Cat(){
+    cout << "Cat was destroyed" << endl;
+}
+
 void Cat::speak(){
     if(happy){
         cout << "Meowwwww!" << endl;
