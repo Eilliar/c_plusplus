@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void manipulate1(double value){
+void manipulate1(double value){ // using variable as input
     cout << "1. Input value is: " << value << endl;
     value = 100.5;
     cout << "2. Input value after manipulation is: " << value << endl;
@@ -10,7 +10,7 @@ void manipulate1(double value){
     return;
 }
 
-void manipulate2(double *value){
+void manipulate2(double *value){ // using a pointer as input
     cout << "1. Input value is: " << *value << endl;
     *value = 100.5;
     cout << "2. Input value after manipulation is: " << *value << endl;
