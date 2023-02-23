@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 
@@ -41,13 +42,16 @@ int main(){
         while(true){
             cout << x << " + " << y << " = " << flush;
             cin >> userAnswer;
-            
-            if(userAnswer == answer) {
+            if(cin.fail()){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            }
+
+            if(userAnswer == answer){
                 break;
             }
-            else {
-                cout << "EEE" << endl;
-            }
+            cout << "EEE" << endl;
+
         }
     }
     
