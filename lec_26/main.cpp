@@ -40,4 +40,4 @@ int main(){
     cout << "Size of labels array: " << (long)(pEnd - pElement0 + 1) << endl;
 
     return 0;
-} 
+}
