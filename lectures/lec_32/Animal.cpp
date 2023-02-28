@@ -7,7 +7,7 @@ Animal::Animal()
 
 Animal::~Animal()
 {
-    cout << "I'm dying!" << endl;
+    cout << "[" << this->name << "] " << "I'm dying!" << endl;
 }
 
 Animal::Animal(const Animal& other): name(other.name), species(other.species){ // make sure to copy data from other object

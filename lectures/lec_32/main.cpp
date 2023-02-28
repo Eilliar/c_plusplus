@@ -1,5 +1,13 @@
 #include "Animal.h"
 
+Animal *createAnimal(string name, string species){
+    Animal *pAnimal = new Animal();
+    pAnimal->SetName(name);
+    pAnimal->SetSpecies(species);
+
+    return pAnimal;
+}
+
 int main(){
     
     // No memory allocation management needed
@@ -15,6 +23,14 @@ int main(){
     pAnimal2->Speak();
     // Notice no destructor is call unless we call delete
     delete pAnimal2;
+
+    // Returning an object from a function is more efficient using pointers
+    // but since we need to use new operator, we also will need to call delete
+    // to deallocate memory
+
+    Animal *pAnimal3 = createAnimal("Bally", "Pig");
+    pAnimal3->Speak();
+    delete pAnimal3;
     
     return 0;
 }
