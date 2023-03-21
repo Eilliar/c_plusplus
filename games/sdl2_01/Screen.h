@@ -19,6 +19,8 @@ namespace pqsr2 {
     public:
         Screen();
         bool init();
+        void setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
+        void update();
         bool processEvents();
         void close();
     };
