@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <math.h>
 
 using namespace std;
 
@@ -7,6 +8,17 @@ const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 960;
 const int SQUARE_SIZE = 10;
 const int CIRCLE_RADIUS = 10;
+const int RAYCAST_SIZE = 5;
+const unsigned int MAX_RAYCAST_LENGTH = (unsigned int) sqrt(pow(SCREEN_WIDTH, 2)  + pow(SCREEN_HEIGHT, 2));
+const int RAYCAST_ANGLE_STEP = 1;
+
+struct wall {
+  int startX;
+  int startY;
+  int endX;
+  int endY;
+};
+
 
 SDL_Window* gWindow = nullptr;
 SDL_Renderer* gRenderer = nullptr;
@@ -138,6 +150,11 @@ int main(int argc, char* args[])
 
     bool quit = false;
     SDL_Event e;
+    wall Wall1;
+    Wall1.startX = 1000;
+    Wall1.startY = 60;
+    Wall1.endX = 1000;
+    Wall1.endY = 360;
 
     while (!quit)
     {
@@ -176,7 +193,44 @@ int main(int argc, char* args[])
         
         // Render code goes here
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        // PLayer
         drawFilledCircle(mouseX, mouseY, CIRCLE_RADIUS);
+
+        // Walls
+        SDL_RenderDrawLine(gRenderer, Wall1.startX, Wall1.startY, Wall1.endX, Wall1.endY);
+        
+        // Raycast
+        for(int k=0; k<360; k++){
+            if(k % RAYCAST_ANGLE_STEP == 0){
+                // Project the raycast to maximum value
+                int endY = (int) (mouseY + MAX_RAYCAST_LENGTH * sin(k * (M_PI / 180)));
+                int endX = (int) (mouseX + MAX_RAYCAST_LENGTH * cos(k * (M_PI / 180)));
+
+                // Do the casting
+                // source https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
+                int x1 = Wall1.startX;
+                int y1 = Wall1.startY;
+                int x2 = Wall1.endX;
+                int y2 = Wall1.endY;
+                int x3 = mouseX;
+                int y3 = mouseY;
+                int x4 = endX;
+                int y4 = endY;
+                
+                float den = (float) ((x1 - x2)*(y3 - y4) - (y1 - y2)*(x3 - x4));
+                if(den != 0){
+                    float t = (float) ((x1 - x3)*(y3 -y4) - (y1 - y3)*(x3 -x4)) / den;
+                    float u = (float) ((x1 - x3)*(y1 -y2) - (y1 - y3)*(x1 -x2)) / den;
+                    if(t >=0 & t <= 1 & u >= 0 & u <= 1){
+                        // There is an intersection, so
+                        // find the point of intersection
+                        endX = (int) x1 + t*(x2 - x1);
+                        endY = (int) y1 + t*(y2 - y1);
+                        SDL_RenderDrawLine(gRenderer, mouseX, mouseY, endX, endY);
+                    }
+                }
+            }
+        }
 
         // Show
         SDL_RenderPresent(gRenderer);
