@@ -41,7 +41,6 @@ bool init()
     }
 
     SDL_ShowCursor(false);
-
     return true;
 }
 
@@ -133,8 +132,8 @@ int main(int argc, char* args[])
 {
     if (!init())
     {
-        printf("Failed to initialize!\n");
-        return 0;
+        cout << "Failed to initialize SDL2!" << endl;;
+        return -1;
     }
 
     bool quit = false;
@@ -142,6 +141,7 @@ int main(int argc, char* args[])
 
     while (!quit)
     {
+        // (1) Handle Input
         while (SDL_PollEvent(&e) != 0)
         {
             if (e.type == SDL_QUIT)
@@ -150,7 +150,6 @@ int main(int argc, char* args[])
             }
             else if (e.type == SDL_MOUSEMOTION)
             {
-                // Update mouse coordinates
                 mouseX = e.motion.x;
                 mouseY = e.motion.y;
             }
