@@ -10,7 +10,7 @@ const int SQUARE_SIZE = 10;
 const int CIRCLE_RADIUS = 10;
 const int RAYCAST_SIZE = 5;
 const unsigned int MAX_RAYCAST_LENGTH = (unsigned int) sqrt(pow(SCREEN_WIDTH, 2)  + pow(SCREEN_HEIGHT, 2));
-const int RAYCAST_ANGLE_STEP = 1;
+const int RAYCAST_ANGLE_STEP = 5;
 
 struct wall {
   int startX;
