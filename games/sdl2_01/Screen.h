@@ -23,6 +23,7 @@ namespace pqsr2 {
         void update();
         bool processEvents();
         void close();
+        void Clear();
     };
 
 }

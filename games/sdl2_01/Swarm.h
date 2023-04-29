@@ -10,10 +10,12 @@ namespace pqsr2 {
             const static int NPARTICLES = 50000;
         private:
             Particle * m_pParticles; 
+            int lastTime;
         public:
-            Swarm();
+            Swarm(int created_at);
             ~Swarm();
             const Particle * getParticle(); //return a constant pointer
+            void Update(int tick);
     };
 
 }

@@ -3,15 +3,19 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <math.h>
 
 namespace pqsr2 {
     class Particle {
         public:
             double m_x;
             double m_y;
+            double m_speed;
+            double m_direction; // angle
         public:
             Particle();
             ~Particle();
+            void Update(int interval);
     };
 }
 

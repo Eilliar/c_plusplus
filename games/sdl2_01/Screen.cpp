@@ -57,6 +57,12 @@ namespace pqsr2 {
         m_buffer[(y * SCREEN_WIDTH + x)] = color;
     }
     
+    void Screen::Clear(){
+        memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+
+        return;
+    }
+
     void Screen::update(){
         SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WIDTH*sizeof(Uint32));
         SDL_RenderClear(m_renderer);

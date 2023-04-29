@@ -1,11 +1,15 @@
 #include "Particle.h"
 
 namespace pqsr2 {
-    Particle::Particle(){
-        // [-1, 1] cartesian space
-        m_x = (2.0*rand()/RAND_MAX) - 1.0;
-        m_y = (2.0*rand()/RAND_MAX) - 1.0;
+    Particle::Particle(): m_x(0), m_y(0) {
+        m_direction = 2* M_PI * rand()/RAND_MAX;
+        m_speed = (0.0001 * rand())/RAND_MAX;
     }
 
     Particle::~Particle(){}
+
+    void Particle::Update(int interval){
+        m_x += interval * m_speed * cos(m_direction);
+        m_y += interval * m_speed * sin(m_direction);
+    }
 }
