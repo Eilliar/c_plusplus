@@ -7,7 +7,7 @@ namespace pqsr2 {
     class Swarm
     {
         public:
-            const static int NPARTICLES = 50000;
+            const static int NPARTICLES = 1000;
         private:
             Particle * m_pParticles; 
             int lastTime;

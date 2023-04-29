@@ -30,7 +30,7 @@ int main(int argv, char** args)
         if(screen.processEvents() == false) { break; }
         elapsed = SDL_GetTicks64();
 
-        screen.Clear();
+        // screen.clear();
         swarm.Update(elapsed);
 
         const pqsr2::Particle * particle = swarm.getParticle();        
@@ -47,9 +47,10 @@ int main(int argv, char** args)
             screen.setPixel(x, y, red, green, blue, 255);
         }
         
+        screen.boxBlur();
         screen.update();
     }
-
+    
     screen.close();
 
     return 0;
