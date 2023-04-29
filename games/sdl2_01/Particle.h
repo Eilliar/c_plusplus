@@ -12,6 +12,8 @@ namespace pqsr2 {
             double m_y;
             double m_speed;
             double m_direction; // angle
+        private:
+            void init();
         public:
             Particle();
             ~Particle();
