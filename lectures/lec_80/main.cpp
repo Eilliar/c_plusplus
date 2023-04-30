@@ -26,7 +26,8 @@ public:
 };
 
 int main(){
-
+    // Polymorphism example
+    // Still don't know why someone would do this
     Animal *pDog = new Dog();
 
     pDog->speak();
